@@ -51,11 +51,30 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
+
+  gem "annotate"
+
+  gem "rspec-rails"
+
+  gem "dotenv-rails"
 end
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
+
+# Static code analysis for Ruby
+  gem "rubocop"
+  gem "ruby-lsp"
+
+  # Additional RuboCop rules for Ruby on Rails
+  gem "rubocop-rails"
+
+  # RuboCop rules for RSpec tests
+  gem "rubocop-rspec"
+
+  # RuboCop rules for Capybara tests
+  gem "rubocop-capybara"
 end
 
 group :test do
