@@ -6,10 +6,6 @@
 
     <%= render @hospital %>
 
-    <%= link_to "Edit this hospital", edit_hospital_path(@hospital), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
     <%= link_to "Back to hospitals", hospitals_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <div class="inline-block ml-2">
-      <%= button_to "Destroy this hospital", @hospital, method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
-    </div>
   </div>
 </div>

@@ -9,4 +9,6 @@
 #
 
 class Hospital < ApplicationRecord
+  has_many :hospital_departments
+  has_many :departments, through: :hospital_departments
 end

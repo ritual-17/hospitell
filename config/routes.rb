@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
-  resources :posts
-  resources :hospital_departments
-  resources :departments
-  resources :hospitals
+  resources :departments, only: [ :index, :show ]
+  resources :hospitals, only: [ :index, :show ] do
+    resources :hospital_departments, only: [ :index ]
+  end
+  resources :hospital_departments, only: [ :show ] do
+    resources :posts, only: [ :index, :show, :new, :create ]
+  end
+  resources :posts, only: [ :edit, :update, :destroy ]
   root "static_pages#home"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

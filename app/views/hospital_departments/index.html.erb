@@ -6,15 +6,14 @@
   <% content_for :title, "Hospital departments" %>
 
   <div class="flex justify-between items-center">
-    <h1 class="font-bold text-4xl">Hospital departments</h1>
-    <%= link_to "New hospital department", new_hospital_department_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+    <h1 class="font-bold text-4xl"><%= @hospital.name %> departments</h1>
   </div>
 
   <div id="hospital_departments" class="min-w-full">
     <% @hospital_departments.each do |hospital_department| %>
       <%= render hospital_department %>
       <p>
-        <%= link_to "Show this hospital department", hospital_department, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+        <%= link_to "Show this hospital department", hospital_department_path(id: hospital_department.id), class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
       </p>
     <% end %>
   </div>

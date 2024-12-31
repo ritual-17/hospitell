@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_12_30_223207) do
+ActiveRecord::Schema[8.0].define(version: 2024_12_30_234224) do
   create_table "departments", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -20,6 +20,10 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_30_223207) do
   create_table "hospital_departments", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "hospital_id", null: false
+    t.integer "department_id", null: false
+    t.index ["department_id"], name: "index_hospital_departments_on_department_id"
+    t.index ["hospital_id"], name: "index_hospital_departments_on_hospital_id"
   end
 
   create_table "hospitals", force: :cascade do |t|
@@ -33,5 +37,11 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_30_223207) do
     t.text "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "hospital_department_id", null: false
+    t.index ["hospital_department_id"], name: "index_posts_on_hospital_department_id"
   end
+
+  add_foreign_key "hospital_departments", "departments"
+  add_foreign_key "hospital_departments", "hospitals"
+  add_foreign_key "posts", "hospital_departments"
 end
