@@ -6,6 +6,17 @@
 
     <%= render @hospital_department %>
 
-    <%= link_to "Back to hospital departments", hospital_hospital_departments_path(@hospital_department.hospital), class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+  <div class="flex justify-between items-center">
+    <h1 class="font-bold text-4xl">Posts</h1>
+    <%= link_to "New post", new_hospital_department_post_path(@hospital_department), class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+  </div>
+
+  <div id="posts" class="min-w-full">
+    <% @hospital_department.posts.each do |post| %>
+      <%= render post %>
+    <% end %>
+  </div>
+
+    <%= link_to "Back to hospital", hospital_path(@hospital_department.hospital), class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
   </div>
 </div>

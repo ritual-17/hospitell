@@ -1,5 +1,8 @@
+# frozen_string_literal: true
+
 class PostsController < ApplicationController
   before_action :set_post, only: %i[ show edit update destroy ]
+  before_action :set_hospital_department, only: %i[ index show new create ]
 
   # GET /posts or /posts.json
   def index
@@ -22,10 +25,11 @@ class PostsController < ApplicationController
   # POST /posts or /posts.json
   def create
     @post = Post.new(post_params)
+    @post.hospital_department = @hospital_department
 
     respond_to do |format|
       if @post.save
-        format.html { redirect_to @post, notice: "Post was successfully created." }
+        format.html { redirect_to @hospital_department, notice: "Post was successfully created." }
         format.json { render :show, status: :created, location: @post }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -61,6 +65,10 @@ class PostsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_post
       @post = Post.find(params.expect(:id))
+    end
+
+    def set_hospital_department
+      @hospital_department = HospitalDepartment.find(params.expect(:hospital_department_id))
     end
 
     # Only allow a list of trusted parameters through.

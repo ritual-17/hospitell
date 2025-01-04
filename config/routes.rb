@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   resources :departments, only: [ :index, :show ]
   resources :hospitals, only: [ :index, :show ] do
     resources :hospital_departments, only: [ :index ]
   end
   resources :hospital_departments, only: [ :show ] do
-    resources :posts, only: [ :index, :show, :new, :create ]
+    resources :posts, only: [ :new, :create ]
   end
   resources :posts, only: [ :edit, :update, :destroy ]
   root "static_pages#home"
